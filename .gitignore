@@ -1,0 +1,12 @@
+# dependensi — berat, bisa dibangun ulang dari package.json
+node_modules/
+
+# hasil build
+client/dist/
+dist/
+
+# kredensial & rahasia (kebiasaan untuk masa depan)
+.env
+
+# log
+*.log

@@ -1,0 +1,862 @@
+/* ============================================================
+   TOLONGIN! — style.css (v12 — redesign)
+   Susunan: Tokens → Dasar → Nav → Hero → Section → Search
+            → Kartu → Status → Tombol → Form → Footer
+   ============================================================ */
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+    /* warna */
+    --bg:           #F7F6F3;
+    --surface:      #FFFFFF;
+    --ink:          #1C1917;
+    --ink-2:        #57534E;
+    --ink-3:        #78716C;
+    --line:         #E7E5E4;
+    --line-strong:  #D6D3D1;
+
+    --accent:       #0F766E;
+    --accent-hover: #115E59;
+    --accent-soft:  rgba(15, 118, 110, 0.10);
+
+    --amber:        #B45309;
+    --danger:       #B91C1C;
+    --danger-soft:  #FEF2F2;
+    --danger-line:  #FECACA;
+
+    /* spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 */
+    --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+    --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+    --radius:    8px;
+    --radius-lg: 12px;
+
+    --font: "Plus Jakarta Sans", -apple-system, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ===== DASAR ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    background: var(--accent-soft);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ===== NAV ===== */
+header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+}
+
+nav {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--s-3) var(--s-5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s-4);
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.logo-accent {
+    color: var(--accent);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--s-5);
+    flex-wrap: wrap;
+}
+
+.nav-menu a:not(.btn) {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.nav-menu a:not(.btn):hover {
+    color: var(--ink);
+}
+
+.nav-user {
+    font-size: 14px;
+    color: var(--ink-3);
+}
+
+/* ===== HERO (ringkas, editorial) ===== */
+.hero {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--s-7) var(--s-5) var(--s-5);
+}
+
+.hero h1 {
+    max-width: 560px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+.hero p {
+    max-width: 520px;
+    margin-top: var(--s-3);
+    font-size: 16px;
+    color: var(--ink-2);
+}
+
+/* ===== SECTION ===== */
+#daftar-job {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--s-5) var(--s-5) var(--s-7);
+}
+
+#cara-kerja {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 var(--s-5) var(--s-8);
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--s-5);
+}
+
+.page-content {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: var(--s-7) var(--s-5);
+}
+
+.page-content h2 {
+    margin: var(--s-6) 0 var(--s-2);
+}
+
+/* ===== PENCARIAN ===== */
+.search-panel {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: var(--s-2);
+    margin-bottom: var(--s-4);
+}
+
+.search-panel input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    height: 42px;
+    padding: 0 var(--s-3) 0 40px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background-color: var(--surface);
+    font: inherit;
+    font-size: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.search-panel input[type="text"]::placeholder {
+    color: var(--ink-3);
+}
+
+.search-panel select {
+    height: 42px;
+    padding: 0 36px 0 var(--s-3);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    font: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background-color: var(--surface);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.search-panel input[type="text"]:focus,
+.search-panel select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.search-panel .btn {
+    height: 42px;
+    padding: 0 var(--s-5);
+    font-size: 14px;
+}
+
+.search-panel .reset-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-3);
+    text-decoration: none;
+    padding: 0 var(--s-2);
+    white-space: nowrap;
+    transition: color 0.15s;
+}
+
+.search-panel .reset-link:hover {
+    color: var(--danger);
+}
+
+.result-count {
+    font-size: 13px;
+    color: var(--ink-3);
+    margin-bottom: var(--s-4);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--ink-3);
+    font-size: 15px;
+    padding: var(--s-8) var(--s-5);
+}
+
+/* ===== DAFTAR JOB & KARTU ===== */
+.job-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--s-4);
+}
+
+.job-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.job-card:hover {
+    border-color: var(--line-strong);
+    box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04),
+                0 4px 12px rgba(28, 25, 23, 0.05);
+}
+
+.card-top {
+    margin-bottom: var(--s-3);
+}
+
+.job-card h2 {
+    font-size: 20px;
+    margin-bottom: var(--s-3);
+}
+
+.job-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--s-3);
+}
+
+.job-card ul {
+    list-style: none;
+    display: grid;
+    gap: 6px;
+    margin-bottom: var(--s-4);
+    font-size: 14px;
+    color: var(--ink-2);
+}
+
+.reward {
+    color: var(--amber);
+    font-weight: 600;
+}
+
+.job-card > a:not(.btn) {
+    margin-top: auto;
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.job-card > a:not(.btn)::after {
+    content: "→";
+    display: inline-block;
+    margin-left: var(--s-1);
+    transition: transform 0.15s;
+}
+
+.job-card > a:not(.btn):hover::after {
+    transform: translateX(2px);
+}
+
+/* ===== STATUS (dot + label) ===== */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+}
+
+.badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.badge-open        { color: #15803D; }
+.badge-accepted    { color: var(--accent); }
+.badge-in_progress { color: var(--amber); }
+.badge-completed   { color: var(--ink-3); }
+.badge-cancelled   { color: var(--danger); }
+
+/* ===== TOMBOL ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 40px;
+    padding: 0 var(--s-4);
+    background: var(--accent);
+    color: #FFFFFF;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.btn:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-danger {
+    background: var(--surface);
+    color: var(--danger);
+    border-color: var(--danger-line);
+}
+
+.btn-danger:hover {
+    background: var(--danger-soft);
+    border-color: #FCA5A5;
+}
+
+.btn-nav {
+    height: 36px;
+    padding: 0 var(--s-3);
+    font-size: 13px;
+}
+
+/* ===== CARA KERJA ===== */
+#cara-kerja ol {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-6);
+    counter-reset: step;
+}
+
+#cara-kerja li {
+    counter-increment: step;
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+    color: var(--ink-2);
+}
+
+#cara-kerja li::before {
+    content: "0" counter(step);
+    display: block;
+    margin-bottom: var(--s-2);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+}
+
+/* ===== FORM ===== */
+.form-panel {
+    max-width: 480px;
+    margin: var(--s-7) auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: var(--s-6);
+}
+
+.form-panel h2 {
+    margin-bottom: var(--s-5);
+}
+
+.form-panel button[type="submit"] {
+    width: 100%;
+    margin-top: var(--s-2);
+}
+
+.form-group {
+    margin-bottom: var(--s-5);
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0 var(--s-3);
+    height: 42px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    font: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-group textarea {
+    height: auto;
+    padding: 10px var(--s-3);
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.form-group input[type="radio"] {
+    width: auto;
+    height: auto;
+    accent-color: var(--accent);
+}
+
+.error {
+    background: var(--danger-soft);
+    border: 1px solid var(--danger-line);
+    color: var(--danger);
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    margin-bottom: var(--s-4);
+}
+
+.success {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    color: #15803D;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    margin-bottom: var(--s-4);
+}
+
+/* ===== RADIO GROUP ===== */
+.radio-group {
+    display: flex;
+    gap: var(--s-5);
+}
+
+.radio-group label {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+}
+
+.footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--s-6) var(--s-5);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--s-4);
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+footer p {
+    font-size: 13px;
+    color: var(--ink-3);
+}
+
+.footer-copy {
+    font-size: 13px;
+    color: var(--ink-3);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    #cara-kerja ol {
+        grid-template-columns: 1fr;
+        gap: var(--s-4);
+    }
+}
+
+@media (max-width: 640px) {
+    nav {
+        padding: var(--s-3) var(--s-4);
+    }
+    .nav-menu {
+        gap: var(--s-4);
+    }
+    .hero {
+        padding: var(--s-6) var(--s-4) var(--s-4);
+    }
+    .hero h1 {
+        font-size: 24px;
+    }
+    #daftar-job,
+    #cara-kerja {
+        padding-left: var(--s-4);
+        padding-right: var(--s-4);
+    }
+    .search-panel {
+        flex-wrap: wrap;
+    }
+    .search-panel input[type="text"] {
+        flex-basis: 100%;
+    }
+    .search-panel select {
+        flex: 1;
+        min-width: 0;
+    }
+    .form-panel {
+        margin: var(--s-5) var(--s-4);
+        padding: var(--s-5);
+    }
+    .radio-group {
+        flex-direction: column;
+        gap: var(--s-2);
+    }
+}
+/* ===== DETAIL JOB (M12) ===== */
+.job-detail h2 {
+    margin-bottom: var(--s-3);
+}
+
+.job-detail h3 {
+    margin: var(--s-4) 0 var(--s-1);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+.job-detail p {
+    color: var(--ink-2);
+}
+
+.job-actions {
+    margin-top: var(--s-5);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+}
+
+.notice {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg);
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--ink-2);
+}
+
+.notice a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.apply-link {
+    margin-left: auto;
+    font-size: 14px;
+}
+
+.apply-link a {
+    color: var(--ink-3);
+    text-decoration: none;
+}
+
+.apply-link a:hover {
+    color: var(--accent);
+}
+
+/* badge lamaran — warna dari token yang sama */
+.badge-pending  { color: var(--amber); }
+.badge-rejected { color: var(--danger); }
+
+/* ===== LAMARAN SAYA — list, bukan kartu ===== */
+.app-list {
+    max-width: 720px;
+}
+
+.app-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s-4);
+    padding: var(--s-4) 0;
+    border-top: 1px solid var(--line);
+}
+
+.app-row:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.app-main a {
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.app-main a:hover {
+    color: var(--accent);
+}
+
+.app-meta {
+    font-size: 13px;
+    color: var(--ink-3);
+    margin-top: 2px;
+}
+
+@media (max-width: 640px) {
+    .app-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--s-2);
+    }
+    .apply-link {
+        margin-left: 0;
+    }
+}
+/* ===== M13: aksi & chip ===== */
+.btn-sm {
+    height: 34px;
+    padding: 0 14px;
+    font-size: 13px;
+}
+
+.app-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    flex-wrap: wrap;
+}
+
+.count-chip {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 3px 10px;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    .app-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+/* ===== PAGINATION (M14.5) ===== */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-1);
+    margin-top: var(--s-6);
+}
+
+.page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 var(--s-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    background: var(--surface);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+a.page-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.page-current {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+    cursor: default;
+}
+
+@media (max-width: 480px) {
+    .page-link {
+        min-width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+}
+/* ===== REVIEW (M15) ===== */
+.stars {
+    color: var(--amber);
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.review-item {
+    padding: var(--s-3) 0;
+    border-top: 1px solid var(--line);
+}
+
+.review-head {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    flex-wrap: wrap;
+}
+
+.review-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.review-date {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-3);
+}
+
+.review-item p {
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--ink-2);
+}
+/* ===== STAR RATING INPUT (M15.5) ===== */
+.star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse; /* DOM 5→1, tampil 1→5 */
+    gap: 2px;
+}
+
+.star-rating input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px; /* tak terlihat, tapi tetap fokusabel untuk keyboard */
+}
+
+.star-rating label {
+    font-size: 32px;
+    line-height: 1;
+    color: var(--line-strong);
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+/* terisi: yang checked + semua di sebelah kirinya (later siblings, dibalik row-reverse) */
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: var(--amber);
+}
+
+/* fokus keyboard: ring pada bintang yang ditab */
+.star-rating input:focus-visible + label {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}

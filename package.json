@@ -1,0 +1,19 @@
+{
+    "name": "tolongin",
+    "version": "1.0.0",
+    "description": "Aplikasi Tolongin! — proyek belajar web development",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "server": "node server/server.js",
+        "dev": "node --watch server/server.js"
+    },
+    "devDependencies": {
+        "typescript": "^7.0.2"
+    },
+    "dependencies": {
+        "cors": "^2.8.6",
+        "express": "^5.2.1",
+        "pg": "^8.23.1"
+    }
+}
