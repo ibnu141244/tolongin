@@ -782,3 +782,37 @@ footer p {
         grid-template-columns: 1fr;   /* HP: 1 kolom — kartu penuh lebar */
     }
 }
+/* ===== HEADER-RIGHT (salam + keluar) ===== */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+}
+/* ===== DETAIL JOB (React) ===== */
+.job-detail h2 {
+    margin-bottom: var(--s-3);
+    color: var(--olive);
+}
+
+.job-detail h3 {
+    margin: var(--s-4) 0 var(--s-1);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+.job-detail p {
+    color: var(--ink-2);
+}
+
+.job-actions {
+    margin-top: var(--s-5);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+}
