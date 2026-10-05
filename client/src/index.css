@@ -1,32 +1,40 @@
 /* ============================================================
-   TOLONGIN! — style.css (v12 — redesign)
-   Susunan: Tokens → Dasar → Nav → Hero → Section → Search
-            → Kartu → Status → Tombol → Form → Footer
+   TOLONGIN! — style.css (v14 — bottom nav semua ukuran)
+   Palet: warm cream + deep olive + terracotta
    ============================================================ */
 
 /* ===== DESIGN TOKENS ===== */
 :root {
-    /* warna */
-    --bg:           #F7F6F3;
-    --surface:      #FFFFFF;
-    --ink:          #1C1917;
-    --ink-2:        #57534E;
-    --ink-3:        #78716C;
-    --line:         #E7E5E4;
-    --line-strong:  #D6D3D1;
+    --bg:           #F7F0E2;
+    --bg-2:         #ECE3D1;
+    --surface:      #FBF6EA;
 
-    --accent:       #0F766E;
-    --accent-hover: #115E59;
-    --accent-soft:  rgba(15, 118, 110, 0.10);
+    --olive:        #4A492D;
+    --olive-2:      #78704B;
+    --olive-deep:   #3A3922;
 
-    --amber:        #B45309;
-    --danger:       #B91C1C;
-    --danger-soft:  #FEF2F2;
-    --danger-line:  #FECACA;
+    --accent:       #B9714D;
+    --accent-2:     #D0926E;
+    --accent-soft:  rgba(185, 113, 77, 0.12);
+    --accent-hover: #6A4D34;
 
-    /* spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 */
+    --ink:          #2A251E;
+    --ink-2:        #5C5344;
+    --ink-3:        #8A7E6C;
+    --ink-inverse:  #F7F0E2;
+
+    --line:         #C6B7A3;
+    --line-strong:  #B09F87;
+
+    --ok:           #6B7F3E;
+    --ok-bg:        rgba(120, 112, 75, 0.14);
+    --warn:         #A05C2E;
+    --danger:       #9C3B2E;
+    --danger-soft:  rgba(156, 59, 46, 0.10);
+    --danger-line:  rgba(156, 59, 46, 0.35);
+
     --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
-    --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+    --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
 
     --radius:    8px;
     --radius-lg: 12px;
@@ -36,6 +44,10 @@
 }
 
 /* ===== DASAR ===== */
+html, body {
+    overflow-x: hidden;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -47,10 +59,13 @@ body {
     background: var(--bg);
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
+    /* isi halaman tidak tertutup bottom nav (semua ukuran) */
+    padding-bottom: calc(66px + env(safe-area-inset-bottom));
 }
 
 ::selection {
-    background: var(--accent-soft);
+    background: var(--accent-2);
+    color: var(--ink);
 }
 
 :focus-visible {
@@ -58,13 +73,13 @@ body {
     outline-offset: 2px;
 }
 
-/* ===== NAV ===== */
+/* ===== HEADER (logo + salam + keluar) ===== */
 header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--line);
+    background: var(--olive);
+    border-bottom: 1px solid var(--olive-deep);
 }
 
-nav {
+header nav {
     max-width: 1080px;
     margin: 0 auto;
     padding: var(--s-3) var(--s-5);
@@ -72,50 +87,100 @@ nav {
     justify-content: space-between;
     align-items: center;
     gap: var(--s-4);
-    flex-wrap: wrap;
 }
 
 .logo {
     font-size: 19px;
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: var(--ink);
+    color: var(--ink-inverse);
     text-decoration: none;
 }
 
 .logo-accent {
-    color: var(--accent);
+    color: var(--accent-2);
 }
 
-.nav-menu {
+.header-right {
     display: flex;
     align-items: center;
-    gap: var(--s-5);
-    flex-wrap: wrap;
-}
-
-.nav-menu a:not(.btn) {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink-2);
-    text-decoration: none;
-    transition: color 0.15s;
-}
-
-.nav-menu a:not(.btn):hover {
-    color: var(--ink);
+    gap: var(--s-4);
 }
 
 .nav-user {
     font-size: 14px;
-    color: var(--ink-3);
+    color: rgba(247, 240, 226, 0.65);
 }
 
-/* ===== HERO (ringkas, editorial) ===== */
+.nav-logout {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent-2);
+    text-decoration: none;
+}
+
+.nav-logout:hover {
+    color: var(--ink-inverse);
+    text-decoration: underline;
+}
+
+/* nav atas lama: tidak dipakai lagi (navigasi pindah ke bottom nav) */
+.nav-menu {
+    display: none;
+}
+
+/* ===== BOTTOM NAV (semua ukuran) ===== */
+.bottom-nav {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -2px 8px rgba(42, 37, 30, 0.06);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.bn-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+    padding: 2px 0;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-3);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.bn-link svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.bn-link.active,
+.bn-link:active,
+.bn-link:hover {
+    color: var(--accent);
+}
+
+/* ===== HERO (dipakai tentang.php) ===== */
 .hero {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: var(--s-7) var(--s-5) var(--s-5);
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--line);
+    padding: var(--s-7) var(--s-5);
 }
 
 .hero h1 {
@@ -124,6 +189,7 @@ nav {
     font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.02em;
+    color: var(--olive);
 }
 
 .hero p {
@@ -137,13 +203,13 @@ nav {
 #daftar-job {
     max-width: 1080px;
     margin: 0 auto;
-    padding: var(--s-5) var(--s-5) var(--s-7);
+    padding: var(--s-6) var(--s-5) var(--s-7);
 }
 
-#cara-kerja {
-    max-width: 1080px;
+.page-content {
+    max-width: 640px;
     margin: 0 auto;
-    padding: 0 var(--s-5) var(--s-8);
+    padding: var(--s-7) var(--s-5);
 }
 
 h2 {
@@ -153,14 +219,15 @@ h2 {
     margin-bottom: var(--s-5);
 }
 
-.page-content {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: var(--s-7) var(--s-5);
-}
-
-.page-content h2 {
-    margin: var(--s-6) 0 var(--s-2);
+.page-content h2::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+    margin-right: var(--s-2);
+    vertical-align: middle;
 }
 
 /* ===== PENCARIAN ===== */
@@ -185,7 +252,8 @@ h2 {
     background-color: var(--surface);
     font: inherit;
     font-size: 14px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+    color: var(--ink);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A7E6C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: 12px center;
     transition: border-color 0.15s, box-shadow 0.15s;
@@ -195,26 +263,7 @@ h2 {
     color: var(--ink-3);
 }
 
-.search-panel select {
-    height: 42px;
-    padding: 0 36px 0 var(--s-3);
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius);
-    font: inherit;
-    font-size: 14px;
-    color: var(--ink);
-    background-color: var(--surface);
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2378716C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    cursor: pointer;
-    transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.search-panel input[type="text"]:focus,
-.search-panel select:focus {
+.search-panel input[type="text"]:focus {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-soft);
@@ -253,10 +302,10 @@ h2 {
     padding: var(--s-8) var(--s-5);
 }
 
-/* ===== DAFTAR JOB & KARTU ===== */
+/* ===== KARTU JOB ===== */
 .job-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);   /* selalu 2 kolom → 2×2 */
     gap: var(--s-4);
 }
 
@@ -265,6 +314,7 @@ h2 {
     flex-direction: column;
     background: var(--surface);
     border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
     border-radius: 10px;
     padding: 20px;
     transition: border-color 0.15s, box-shadow 0.15s;
@@ -272,16 +322,11 @@ h2 {
 
 .job-card:hover {
     border-color: var(--line-strong);
-    box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04),
-                0 4px 12px rgba(28, 25, 23, 0.05);
+    box-shadow: 0 1px 2px rgba(42, 37, 30, 0.05),
+                0 4px 12px rgba(42, 37, 30, 0.06);
 }
 
 .card-top {
-    margin-bottom: var(--s-3);
-}
-
-.job-card h2 {
-    font-size: 20px;
     margin-bottom: var(--s-3);
 }
 
@@ -290,6 +335,7 @@ h2 {
     font-weight: 600;
     letter-spacing: -0.01em;
     margin-bottom: var(--s-3);
+    color: var(--olive);
 }
 
 .job-card ul {
@@ -302,7 +348,7 @@ h2 {
 }
 
 .reward {
-    color: var(--amber);
+    color: var(--warn);
     font-weight: 600;
 }
 
@@ -326,7 +372,7 @@ h2 {
     transform: translateX(2px);
 }
 
-/* ===== STATUS (dot + label) ===== */
+/* ===== STATUS ===== */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -346,11 +392,53 @@ h2 {
     background: currentColor;
 }
 
-.badge-open        { color: #15803D; }
-.badge-accepted    { color: var(--accent); }
-.badge-in_progress { color: var(--amber); }
+.badge-open        { color: var(--ok); }
+.badge-accepted    { color: var(--olive-2); }
+.badge-in_progress { color: var(--warn); }
 .badge-completed   { color: var(--ink-3); }
 .badge-cancelled   { color: var(--danger); }
+.badge-pending     { color: var(--warn); }
+.badge-rejected    { color: var(--danger); }
+
+/* ===== PAGINATION ===== */
+.pagination {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-1);
+    margin-top: var(--s-6);
+}
+
+.page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 var(--s-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    background: var(--surface);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+a.page-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.page-current {
+    background: var(--olive);
+    border-color: var(--olive);
+    color: var(--ink-inverse);
+    cursor: default;
+}
 
 /* ===== TOMBOL ===== */
 .btn {
@@ -361,7 +449,7 @@ h2 {
     height: 40px;
     padding: 0 var(--s-4);
     background: var(--accent);
-    color: #FFFFFF;
+    color: var(--ink-inverse);
     border: 1px solid var(--accent);
     border-radius: var(--radius);
     font-family: inherit;
@@ -395,40 +483,13 @@ h2 {
 
 .btn-danger:hover {
     background: var(--danger-soft);
-    border-color: #FCA5A5;
+    border-color: var(--danger);
 }
 
-.btn-nav {
-    height: 36px;
-    padding: 0 var(--s-3);
+.btn-sm {
+    height: 34px;
+    padding: 0 14px;
     font-size: 13px;
-}
-
-/* ===== CARA KERJA ===== */
-#cara-kerja ol {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--s-6);
-    counter-reset: step;
-}
-
-#cara-kerja li {
-    counter-increment: step;
-    padding-top: var(--s-4);
-    border-top: 1px solid var(--line);
-    font-size: 15px;
-    color: var(--ink-2);
-}
-
-#cara-kerja li::before {
-    content: "0" counter(step);
-    display: block;
-    margin-bottom: var(--s-2);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--accent);
 }
 
 /* ===== FORM ===== */
@@ -496,27 +557,6 @@ h2 {
     accent-color: var(--accent);
 }
 
-.error {
-    background: var(--danger-soft);
-    border: 1px solid var(--danger-line);
-    color: var(--danger);
-    padding: 10px 14px;
-    border-radius: var(--radius);
-    font-size: 14px;
-    margin-bottom: var(--s-4);
-}
-
-.success {
-    background: #F0FDF4;
-    border: 1px solid #BBF7D0;
-    color: #15803D;
-    padding: 10px 14px;
-    border-radius: var(--radius);
-    font-size: 14px;
-    margin-bottom: var(--s-4);
-}
-
-/* ===== RADIO GROUP ===== */
 .radio-group {
     display: flex;
     gap: var(--s-5);
@@ -529,110 +569,24 @@ h2 {
     gap: 6px;
 }
 
-/* ===== FOOTER ===== */
-footer {
-    border-top: 1px solid var(--line);
-    background: var(--surface);
-}
-
-.footer-inner {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: var(--s-6) var(--s-5);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--s-4);
-    flex-wrap: wrap;
-}
-
-.footer-brand {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--ink);
-}
-
-footer p {
-    font-size: 13px;
-    color: var(--ink-3);
-}
-
-.footer-copy {
-    font-size: 13px;
-    color: var(--ink-3);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    #cara-kerja ol {
-        grid-template-columns: 1fr;
-        gap: var(--s-4);
-    }
-}
-
-@media (max-width: 640px) {
-    nav {
-        padding: var(--s-3) var(--s-4);
-    }
-    .nav-menu {
-        gap: var(--s-4);
-    }
-    .hero {
-        padding: var(--s-6) var(--s-4) var(--s-4);
-    }
-    .hero h1 {
-        font-size: 24px;
-    }
-    #daftar-job,
-    #cara-kerja {
-        padding-left: var(--s-4);
-        padding-right: var(--s-4);
-    }
-    .search-panel {
-        flex-wrap: wrap;
-    }
-    .search-panel input[type="text"] {
-        flex-basis: 100%;
-    }
-    .search-panel select {
-        flex: 1;
-        min-width: 0;
-    }
-    .form-panel {
-        margin: var(--s-5) var(--s-4);
-        padding: var(--s-5);
-    }
-    .radio-group {
-        flex-direction: column;
-        gap: var(--s-2);
-    }
-}
-/* ===== DETAIL JOB (M12) ===== */
-.job-detail h2 {
-    margin-bottom: var(--s-3);
-}
-
-.job-detail h3 {
-    margin: var(--s-4) 0 var(--s-1);
+.error {
+    background: var(--danger-soft);
+    border: 1px solid var(--danger-line);
+    color: var(--danger);
+    padding: 10px 14px;
+    border-radius: var(--radius);
     font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--ink-3);
+    margin-bottom: var(--s-4);
 }
 
-.job-detail p {
-    color: var(--ink-2);
-}
-
-.job-actions {
-    margin-top: var(--s-5);
-    padding-top: var(--s-4);
-    border-top: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    gap: var(--s-3);
-    flex-wrap: wrap;
+.success {
+    background: var(--ok-bg);
+    border: 1px solid rgba(107, 127, 62, 0.35);
+    color: var(--ok);
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    margin-bottom: var(--s-4);
 }
 
 .notice {
@@ -640,9 +594,9 @@ footer p {
     align-items: center;
     gap: 6px;
     flex-wrap: wrap;
+    background: var(--bg-2);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: var(--bg);
     padding: 10px 14px;
     font-size: 14px;
     color: var(--ink-2);
@@ -654,25 +608,7 @@ footer p {
     text-decoration: none;
 }
 
-.apply-link {
-    margin-left: auto;
-    font-size: 14px;
-}
-
-.apply-link a {
-    color: var(--ink-3);
-    text-decoration: none;
-}
-
-.apply-link a:hover {
-    color: var(--accent);
-}
-
-/* badge lamaran — warna dari token yang sama */
-.badge-pending  { color: var(--amber); }
-.badge-rejected { color: var(--danger); }
-
-/* ===== LAMARAN SAYA — list, bukan kartu ===== */
+/* ===== APP LIST ===== */
 .app-list {
     max-width: 720px;
 }
@@ -706,23 +642,6 @@ footer p {
     margin-top: 2px;
 }
 
-@media (max-width: 640px) {
-    .app-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--s-2);
-    }
-    .apply-link {
-        margin-left: 0;
-    }
-}
-/* ===== M13: aksi & chip ===== */
-.btn-sm {
-    height: 34px;
-    padding: 0 14px;
-    font-size: 13px;
-}
-
 .app-actions {
     display: flex;
     align-items: center;
@@ -733,67 +652,16 @@ footer p {
 .count-chip {
     font-size: 13px;
     font-weight: 600;
-    color: var(--accent);
-    background: var(--accent-soft);
+    color: var(--olive);
+    background: rgba(120, 112, 75, 0.15);
     border-radius: 999px;
     padding: 3px 10px;
     white-space: nowrap;
 }
 
-@media (max-width: 640px) {
-    .app-actions {
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-/* ===== PAGINATION (M14.5) ===== */
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--s-1);
-    margin-top: var(--s-6);
-}
-
-.page-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 36px;
-    height: 36px;
-    padding: 0 var(--s-2);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink-2);
-    background: var(--surface);
-    text-decoration: none;
-    transition: border-color 0.15s, color 0.15s;
-}
-
-a.page-link:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-.page-current {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #ffffff;
-    cursor: default;
-}
-
-@media (max-width: 480px) {
-    .page-link {
-        min-width: 32px;
-        height: 32px;
-        font-size: 13px;
-    }
-}
-/* ===== REVIEW (M15) ===== */
+/* ===== REVIEW ===== */
 .stars {
-    color: var(--amber);
+    color: var(--warn);
     font-size: 14px;
     letter-spacing: 2px;
 }
@@ -826,10 +694,11 @@ a.page-link:hover {
     font-size: 14px;
     color: var(--ink-2);
 }
-/* ===== STAR RATING INPUT (M15.5) ===== */
+
+/* ===== STAR RATING ===== */
 .star-rating {
     display: inline-flex;
-    flex-direction: row-reverse; /* DOM 5→1, tampil 1→5 */
+    flex-direction: row-reverse;
     gap: 2px;
 }
 
@@ -837,7 +706,7 @@ a.page-link:hover {
     position: absolute;
     opacity: 0;
     width: 1px;
-    height: 1px; /* tak terlihat, tapi tetap fokusabel untuk keyboard */
+    height: 1px;
 }
 
 .star-rating label {
@@ -848,15 +717,68 @@ a.page-link:hover {
     transition: color 0.15s;
 }
 
-/* terisi: yang checked + semua di sebelah kirinya (later siblings, dibalik row-reverse) */
 .star-rating input:checked ~ label,
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: var(--amber);
+    color: var(--warn);
 }
 
-/* fokus keyboard: ring pada bintang yang ditab */
 .star-rating input:focus-visible + label {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
+}
+
+/* ===== FOOTER (mini) ===== */
+footer {
+    background: var(--olive-deep);
+}
+
+.footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--s-5) var(--s-5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-align: center;
+}
+
+.footer-brand {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-inverse);
+}
+
+footer p {
+    font-size: 13px;
+    color: rgba(247, 240, 226, 0.7);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+    #daftar-job,
+    .page-content {
+        padding-left: var(--s-4);
+        padding-right: var(--s-4);
+    }
+    .form-panel {
+        margin: var(--s-5) var(--s-4);
+        padding: var(--s-5);
+    }
+    .radio-group {
+        flex-direction: column;
+        gap: var(--s-2);
+    }
+    .app-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--s-2);
+    }
+    .bn-link {
+        font-size: 10px;
+    }
+    .job-list {
+        grid-template-columns: 1fr;   /* HP: 1 kolom — kartu penuh lebar */
+    }
 }

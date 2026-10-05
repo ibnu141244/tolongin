@@ -6,7 +6,7 @@ include 'includes/functions.php';
  $judul_halaman = "Tolongin! — Yang butuh bantuan bertemu yang siap tolong";
 
 // ===== pagination =====
- $perHalaman = 6;
+ $perHalaman = 4;
  $halaman    = max(1, (int)($_GET["page"] ?? 1));
 
 // ===== parameter pencarian (GET) =====
@@ -64,17 +64,11 @@ include 'includes/header.php';
 ?>
 
 <main>
-    <section class="hero">
-        <h1>Butuh bantuan? Ada yang siap tolong.</h1>
-        <p>Memertemukan warga Padang yang butuh bantuan pekerjaan kecil
-           dengan yang siap membantu — dengan imbalan yang disepakati.</p>
-    </section>
-
     <section id="daftar-job">
         <h2>Job Tersedia</h2>
 
         <form method="get" action="index.php" class="search-panel" autocomplete="off">
-            <input type="text" name="q" placeholder="Cari judul atau deskripsi"
+            <input type="text" name="q" placeholder="Cari judul / deskripsi"
                    value="<?php echo e($q); ?>">
             <button type="submit" class="btn">Cari</button>
             <a href="index.php" class="reset-link">Reset</a>
@@ -137,15 +131,6 @@ include 'includes/header.php';
         <?php endif; ?>
 
         <?php endif; ?>
-    </section>
-
-    <section id="cara-kerja">
-        <h2>Cara kerja</h2>
-        <ol>
-            <li>Requester memasang job — jelaskan kebutuhan, waktu, dan imbalannya.</li>
-            <li>Helper mengajukan diri; requester memilih yang paling pas.</li>
-            <li>Pekerjaan selesai — keduanya saling memberi ulasan.</li>
-        </ol>
     </section>
 </main>
 

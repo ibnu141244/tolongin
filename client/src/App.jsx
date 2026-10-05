@@ -95,7 +95,7 @@ export default function App() {
           <form className="search-panel" onSubmit={(e) => e.preventDefault()}>
             <input
               type="text"
-              placeholder="Cari judul atau deskripsi"
+              placeholder="Cari judul / deskripsi"
               value={q}
               onChange={(e) => setQ(e.target.value)}
             />
@@ -128,13 +128,10 @@ export default function App() {
 
       <footer>
         <div className="footer-inner">
-          <div>
-            <span className="footer-brand">
-              Tolongin<span className="logo-accent">!</span>
-            </span>
-            <p>Dibangun dengan React + Node.js + Express</p>
-          </div>
-          <span className="footer-copy">© 2026 Tolongin! · proyek belajar</span>
+          <span className="footer-brand">
+            Tolongin<span className="logo-accent">!</span>
+          </span>
+          <p>Yang butuh bantuan bertemu yang siap tolong.</p>
         </div>
       </footer>
     </>
